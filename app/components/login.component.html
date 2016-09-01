@@ -1,0 +1,38 @@
+<section>
+    <form  (ngSubmit)="validarUsuario()" #loginForm="ngForm">
+        <div class="container">
+
+            <div class="top">
+                <h1 id="title" class="hidden"><span id="logo">Social <span>FOCUS</span></span>
+                </h1>
+            </div>
+            <div class="login-box animated fadeInUp">
+                <div class="box-header">
+                    <h2>Log In</h2>
+                    {{usuario.email}} {{usuario.clave}}
+                </div>
+
+                <label for="username">Usuario</label>
+                <br/>
+                <input type="text" id="usuario" [(ngModel)]="usuario.email" required #name="ngModel">
+                <!--div [hidden]="usuario.valid || usuario.pristine" class="error">
+                    Usuario es requerido
+                </div-->
+                <br/>
+                <label for="password">Clave</label>
+                <br/>
+                <input type="password" id="clave" [(ngModel)]="usuario.clave" required #name="ngModel">
+                <!--div [hidden]="clave.valid || clave.pristine" class="error">
+                    Clave es requerida
+                </div-->
+                <br/>
+                <button type="submit" [disabled]="!loginForm.form.valid">Log In</button>
+
+                <br/>
+                <a href="#">
+                    <p class="small">Olvido su clave?</p>
+                </a>
+            </div>
+        </div>
+    </form>
+</section>
