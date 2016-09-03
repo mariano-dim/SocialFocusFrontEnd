@@ -25,17 +25,9 @@ export class PersonDetailsComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.usuario.usuario = 'Mariano Di Maggio';
-        this.usuario.clave = 'user123mad';
+        this.usuario.email = 'Mariano Di Maggio';
+        this.usuario.clave = 'uermariano';
 
-        this.usuarioService
-            .saveUsuario(this.usuario);
-    }
-
-    saveUsuarioDetails() {
-        this.usuarioService
-            .saveUsuario(this.usuario)
-       ;
     }
 
     ngOnDestroy() {
