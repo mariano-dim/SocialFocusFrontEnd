@@ -3,14 +3,21 @@ import { Routes, RouterModule } from '@angular/router';
 import { PeopleListComponent } from './components/people-list.component';
 import { PersonDetailsComponent } from './components/person-details.component';
 import { LoginComponent } from './components/login.component';
+import { DashboardComponent } from './components/dashboard.component';
+
 
 // Route config let's you map routes to components
 const routes: Routes = [
-  // map '/usuario' to the usuario component
+  // map '/dashboard' to the dashboard component
   {
-    path: 'usuario',
+    path: 'dashboard',
+    component: DashboardComponent,
+  },
+  // map '/login' to the LoginComponent component
+  {
+    path: 'login',
     component: LoginComponent,
-  },  
+  },
   // map '/persons' to the people list component
   {
     path: 'persons',
@@ -24,7 +31,7 @@ const routes: Routes = [
   // map '/' to '/persons' as our default route
   {
     path: '',
-    redirectTo: '/usuario',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
 ];

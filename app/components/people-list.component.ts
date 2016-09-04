@@ -11,7 +11,7 @@ export class PeopleListComponent implements OnInit {
   errorMessage: string = '';
   isLoading: boolean = true;
 
-  constructor(private peopleService : PeopleService) { }
+  constructor(private peopleService: PeopleService) { }
 
   ngOnInit(){
     this.peopleService

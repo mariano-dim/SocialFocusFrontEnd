@@ -5,7 +5,7 @@ import { Response } from '@angular/http';
 import { Person } from '../models/person';
 import { PeopleService } from '../services/people.service';
 
-import { Usuario } from '../models/usuario';
+import { UsuarioCredentials } from '../models/UsuarioCredentials';
 import { UsuarioService } from '../services/usuario.service';
 
 @Component({
@@ -14,7 +14,7 @@ import { UsuarioService } from '../services/usuario.service';
 })
 export class PersonDetailsComponent implements OnInit, OnDestroy {
     person: Person;
-    usuario: Usuario;
+    usuario: UsuarioCredentials;
     sub: any;
     professions: string[] = ['jedi', 'bounty hunter', 'princess', 'sith lord'];
 

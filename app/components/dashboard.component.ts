@@ -7,10 +7,10 @@ import { UsuarioCredentials } from '../models/UsuarioCredentials';
 import { UsuarioService} from '../services/usuario.service';
 
 @Component({
-  selector: 'login',
-  templateUrl: 'app/components/login.component.html'
+  selector: 'dashboard',
+  templateUrl: 'app/components/dashboard.component.html'
 })
-export class LoginComponent {
+export class DashboardComponent {
 
   @Input() usuarioCredentials: UsuarioCredentials;
   public errorMessage: string = '';
@@ -21,22 +21,4 @@ export class LoginComponent {
     this.usuarioCredentials = new UsuarioCredentials('', '');
     console.log('Hola Consola');
   }
-
-  login() {
-    // alert(`saved!!! ${JSON.stringify(this.usuarioCredentials.email)}`);
-    console.log('email:' + this.usuarioCredentials.email);
-    console.log('clave:' + this.usuarioCredentials.clave);
-
-    if (!this.uuarioService.validateUsuario(this.usuarioCredentials)) {
-      this.errorMessage = 'Failed to login';
-    } else {
-      console.log('Log in satisfactorio');
-      this.router.navigate(['dashboard']);
-    }
-  }
-
-
-
-
-
 }
