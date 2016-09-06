@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
-
-import { Response } from '@angular/http';
 import { UsuarioCredentials } from '../models/UsuarioCredentials';
+import { Usuario} from '../models/usuario';
 import { UsuarioService} from '../services/usuario.service';
+
+
 
 @Component({
   selector: 'login',
@@ -13,12 +13,16 @@ import { UsuarioService} from '../services/usuario.service';
 export class LoginComponent {
 
   @Input() usuarioCredentials: UsuarioCredentials;
+  usuario: Usuario;
+  usuarios: Usuario[] = [];
   public errorMessage: string = '';
 
 
-  constructor(private uuarioService: UsuarioService, private router: Router) {
+  constructor(private uuarioService: UsuarioService,
+    private router: Router) {
 
     this.usuarioCredentials = new UsuarioCredentials('', '');
+
     console.log('Hola Consola');
   }
 
@@ -27,16 +31,14 @@ export class LoginComponent {
     console.log('email:' + this.usuarioCredentials.email);
     console.log('clave:' + this.usuarioCredentials.clave);
 
-    if (!this.uuarioService.validateUsuario(this.usuarioCredentials)) {
-      this.errorMessage = 'Failed to login';
-    } else {
-      console.log('Log in satisfactorio');
-      this.router.navigate(['dashboard']);
-    }
+    // this.usuario = this.uuarioService.validateUsuario(this.usuarioCredentials);
+    this.uuarioService.getAllUsuarios().subscribe(
+       usu => this.usuarios = usu,
+       error =>  this.errorMessage = <any>error);
   }
 
 
 
-
-
 }
+
+

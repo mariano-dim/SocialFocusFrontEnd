@@ -8,17 +8,17 @@
             <div class="login-box animated fadeInUp">
                 <div class="box-header">
                     <h2>Log In</h2>
-                    <span>{{errorMsg}}</span>
+                    <!--span>{{errorMsg}}</span-->
                 </div>
 
                 <label for="username">Usuario</label>
                 <br/>
-                <input type="email" id="usuario" [(ngModel)]="usuarioCredentials.email" required>
+                <input type="email" id="usuario" [(ngModel)]="usuarioCredentials.email">
 
                 <br/>
                 <label for="password">Clave</label>
                 <br/>
-                <input type="password" id="clave" [(ngModel)]="usuarioCredentials.clave" required>
+                <input type="password" id="clave" [(ngModel)]="usuarioCredentials.clave">
 
                 <br/>
                 <button (click)="login()" type="submit" name="action">Log In</button>
@@ -27,6 +27,9 @@
                 <a href="#">
                     <p class="small">Olvido su clave?</p>
                 </a>
+                <a href="#">
+                    <p class="small">No tengo usuario</p>
+                </a>                
             </div>
         </div>
 </section>

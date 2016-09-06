@@ -7,7 +7,7 @@ import { Person } from '../models/person';
 export class PeopleService{
   private baseUrl: string = 'http://swapi.co/api';
 
-  constructor(private http : Http){
+  constructor(private http: Http) {
   }
 
   getAll(): Observable<Person[]>{
@@ -39,16 +39,16 @@ export class PeopleService{
   }
 }
 
-function mapPersons(response:Response): Person[]{
+function mapPersons(response: Response): Person[] {
    // uncomment to simulate error:
    // throw new Error('ups! Force choke!');
 
    // The response of the API has a results
    // property with the actual results
-   return response.json().results.map(toPerson)
+   return response.json().results.map(toPerson);
 }
 
-function toPerson(r:any): Person{
+function toPerson(r: any): Person {
   let person = <Person>({
     id: extractId(r),
     url: r.url,
