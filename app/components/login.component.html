@@ -6,9 +6,9 @@
                 </h1>
             </div>
             <div class="login-box animated fadeInUp">
+                
                 <div class="box-header">
                     <h2>Log In</h2>
-                    <!--span>{{errorMsg}}</span-->
                 </div>
 
                 <label for="username">Usuario</label>
@@ -21,7 +21,7 @@
                 <input type="password" id="clave" [(ngModel)]="usuarioCredentials.clave">
 
                 <br/>
-                <button (click)="login()" type="submit" name="action">Log In</button>
+                <button (click)="login()">Log In</button>
 
                 <br/>
                 <a href="#">

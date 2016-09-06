@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { UsuarioCredentials } from '../models/usuarioCredentials';
 import { Usuario } from '../models/usuario';
+
+
 @Injectable()
 export class UsuarioService {
     private baseUsuarioUrl: string = 'http://localhost:8080/api/usuario/';
+    // private baseUsuarioUrl: string = '../models/UsuarioMock.json';
+
     private usuario: Usuario;
 
     constructor(private http: Http) {
@@ -16,13 +20,13 @@ export class UsuarioService {
     getAllUsuarios(): Observable<Usuario[]> {
 
         console.log('in the getAllUsuarios');
+        let options = new RequestOptions({ headers: this.getHeaders(), body: '' });
 
         return this.http
-            .get(`${this.baseUsuarioUrl}`, { headers: this.getHeaders() })
+            .get(`${this.baseUsuarioUrl}`, options)
             .map((mapUsuarios))
             .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
-
 
 
     // TODO: implementar los servicios del lado del servidor
@@ -63,19 +67,8 @@ export class UsuarioService {
         headers.append('Content-Type', 'application/json');
         return headers;
     }
-
 }
 
-// this could also be a private method of the component class
-function handleError(error: any) {
-    // log error
-    // could be something more sofisticated
-    let errorMsg = error.message || `Yikes! There was was a problem with our usuario.service couldn't retrieve your data!`;
-    console.error(errorMsg);
-
-    // throw an application level error
-    return Observable.throw(errorMsg);
-}
 
 function mapUsuarios(response: Response): Usuario[] {
     // uncomment to simulate error:
@@ -83,22 +76,41 @@ function mapUsuarios(response: Response): Usuario[] {
 
     // The response of the API has a results
     // property with the actual results
-    return response.json().results.map(toUsuario);
+    return response.json().map(toUsuario);
 }
 
 function toUsuario(r: any): Usuario {
-    let usuario = <Usuario> ({
-      id: r.id ,
-      email: r.email,
-      clave: r.clave,
-      creationDate: r.creationDate ,
-      telefono: r.telefono ,
-      fechaNacimiento: r.fechaNacimiento ,
-      pais: r.pais,
-      provincia: r.provincia,
-      ciudad: r.ciudad,
-      calle: r.calle ,
+    let usuario = <Usuario>({
+        id: r.id,
+        email: r.email,
+        clave: r.clave,
+        creationDate: r.creationDate,
+        telefono: r.telefono,
+        fechaNacimiento: r.fechaNacimiento,
+        pais: r.pais,
+        provincia: r.provincia,
+        ciudad: r.ciudad,
+        calle: r.calle,
     });
     console.log('Parsed usuario:', usuario);
     return usuario;
 }
+
+function mapUsuario(response: Response): Usuario {
+    // toUsuario looks just like in the previous example
+    return toUsuario(response.json());
+}
+
+// this could also be a private method of the component class
+function handleError(error: any) {
+    // log error
+    // could be something more sofisticated
+    let errorMsg = error.message || `Yikes! There was was a problem with our hyperdrive device and we couldn't retrieve your data!`
+    console.error(errorMsg);
+
+    // throw an application level error
+    return Observable.throw(errorMsg);
+}
+
+
+

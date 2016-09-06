@@ -18,7 +18,7 @@ export class DashboardComponent {
 
   constructor(private uuarioService: UsuarioService, private router: Router) {
 
-    this.usuarioCredentials = new UsuarioCredentials('', '');
+
     console.log('Hola Consola');
   }
 }
